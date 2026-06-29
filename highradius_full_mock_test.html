@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HighRadius consulting intern — Mock Test Portal</title>
+  
+  <!-- SEO Best Practices -->
+  <meta name="description" content="Prepare for the HighRadius Consulting Intern placement exam with this premium, interactive mock test. Covers SQL, Quant, Verbal, Reading Comprehension, and Pattern Matching with detailed analytics.">
+  <meta name="author" content="Antigravity">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------------------------
+       DESIGN SYSTEM & VARIABLES
+       ---------------------------------- */
+    :root {
+      /* Default Theme: Premium Dark Mode */
+      --bg-app: #080d1a;
+      --bg-surface: #10182b;
+      --bg-card: #15223c;
+      --bg-card-hover: #1e2e4f;
+      --bg-active: #253961;
+      --border: #1e2d4a;
+      --border-strong: #2e436c;
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --brand-blue: #0ea5e9;
+      --brand-orange: #f97316;
+      --brand-blue-hover: #0284c7;
+      --brand-orange-hover: #ea580c;
+      
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.1);
+      --success-border: #059669;
+      
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.1);
+      --danger-border: #dc2626;
+      
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.1);
+      --warning-border: #d97706;
+      
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+      --glow-accent: 0 0 20px rgba(14, 165, 233, 0.2);
+    }
+
+    [data-theme="light"] {
+      /* Premium Light Mode */
+      --bg-app: #f6f8fc;
+      --bg-surface: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-card-hover: #edf2f9;
+      --bg-active: #e2e8f0;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      
+      --brand-blue: #0284c7;
+      --brand-orange: #ea580c;
+      --brand-blue-hover: #0369a1;
+      --brand-orange-hover: #c2410c;
+      
+      --success: #059669;
+      --success-bg: rgba(5, 150, 105, 0.08);
+      --success-border: #10b981;
+      
+      --danger: #dc2626;
+      --danger-bg: rgba(220, 38, 38, 0.08);
+      --danger-border: #ef4444;
+      
+      --warning: #d97706;
+      --warning-bg: rgba(217, 119, 6, 0.08);
+      --warning-border: #f59e0b;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+      --glow-accent: 0 0 15px rgba(2, 132, 199, 0.1);
+    }
+
+    /* ----------------------------------
+       RESET & BASE STYLES
+       ---------------------------------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.1s ease;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-app);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-app);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--brand-blue);
+    }
+
+    /* Typography helpers */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Animations */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-slide-down {
+      animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* ----------------------------------
+       COMPONENTS & LAYOUTS
+       ---------------------------------- */
+    .navbar {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-orange) 100%);
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-icon {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .btn-icon:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-strong);
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    /* Button styles */
+    .btn {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--bg-card-hover);
+      border-color: var(--brand-blue);
+      transform: translateY(-1px);
+    }
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .btn.primary {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: #ffffff;
+    }
+    .btn.primary:hover:not(:disabled) {
+      background: var(--brand-blue-hover);
+      border-color: var(--brand-blue-hover);
+      box-shadow: var(--glow-accent);
+    }
+    .btn.warning {
+      background: var(--brand-orange);
+      border-color: var(--brand-orange);
+      color: #ffffff;
+    }
+    .btn.warning:hover:not(:disabled) {
+      background: var(--brand-orange-hover);
+      border-color: var(--brand-orange-hover);
+    }
+
+    /* ----------------------------------
+       START SCREEN
+       ---------------------------------- */
+    .hero-card {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-card h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--text-primary) 30%, var(--brand-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      text-align: left;
+      position: relative;
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .stat-card .val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .stat-card .icon-tag {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      color: var(--brand-blue);
+      opacity: 0.3;
+    }
+
+    .instructions-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .instructions-card h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .instructions-card ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .instructions-card li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .instructions-card li svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--brand-blue);
+    }
+
+    .start-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ----------------------------------
+       QUIZ SCREEN LAYOUT
+       ---------------------------------- */
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .quiz-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Sidebar: Navigators & Timer */
+    .quiz-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 90px;
+    }
+
+    .sidebar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .timer-display {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 12px;
+    }
+    .timer-val {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .timer-val.warn {
+      color: var(--warning);
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+    .timer-val.danger {
+      color: var(--danger);
+      animation: pulse 0.8s infinite ease-in-out;
+    }
+    
+    .test-progress-info {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-bar-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-orange) 100%);
+      width: 0%;
+      border-radius: 4px;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Section navigation list */
+    .section-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+    .section-item {
+      padding: 8px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .section-item:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--brand-blue);
+    }
+    .section-item.active {
+      background: var(--bg-active);
+      border-color: var(--brand-blue);
+      color: var(--brand-blue);
+      font-weight: 600;
+    }
+    .section-item.done {
+      border-color: var(--success-border);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+    .section-badge {
+      font-size: 11px;
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .section-item.done .section-badge {
+      background: var(--success);
+      color: #fff;
+    }
+
+    /* Question navigator grid */
+    .grid-container-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .q-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+      max-height: 200px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .q-grid-item {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      position: relative;
+    }
+    .q-grid-item:hover {
+      border-color: var(--brand-blue);
+      background: var(--bg-card-hover);
+    }
+    .q-grid-item.active {
+      border-color: var(--brand-blue);
+      outline: 2px solid var(--brand-blue);
+      color: var(--brand-blue);
+    }
+    .q-grid-item.answered {
+      background: var(--bg-active);
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+    .q-grid-item.answered-correct {
+      background: var(--success-bg);
+      color: var(--success);
+      border-color: var(--success-border);
+    }
+    .q-grid-item.answered-wrong {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: var(--danger-border);
+    }
+    .q-grid-item.bookmarked::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 6px 6px 0;
+      border-color: transparent var(--brand-orange) transparent transparent;
+    }
+
+    /* Right Main Panel: Question Canvas */
+    .question-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .q-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .q-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sec-badge {
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Dynamic color classes per section */
+    .sec-badge.sql { background: rgba(14, 165, 233, 0.15); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.3); }
+    .sec-badge.quant { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .sec-badge.verbal { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .sec-badge.reading-comp { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .sec-badge.pattern { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+
+    .concept-badge {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .q-body-text {
+      font-size: 16px;
+      line-height: 1.6;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Monospace Code Editor Block */
+    .q-code {
+      position: relative;
+      background: var(--bg-app);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .q-code-header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .q-code-copy {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+    }
+    .q-code-copy:hover {
+      color: var(--brand-blue);
+    }
+    .q-code-body {
+      padding: 12px 16px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      color: var(--text-primary);
+      overflow-x: auto;
+    }
+
+    /* Options design */
+    .options-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      text-align: left;
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--text-primary);
+    }
+    .option-btn:hover {
+      border-color: var(--brand-blue);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .option-label {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    
+    /* Option States */
+    .option-btn.selected {
+      border-color: var(--brand-blue);
+      background: rgba(14, 165, 233, 0.08);
+    }
+    .option-btn.selected .option-label {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+    }
+    .option-btn.correct .option-label {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+    }
+    .option-btn.wrong .option-label {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+    }
+
+    /* Explanation Container */
+    .explanation-card {
+      background: var(--bg-card);
+      border-left: 4px solid var(--brand-blue);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 16px;
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .explanation-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-blue);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .explanation-text {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Navigation control bar */
+    .control-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ----------------------------------
+       RESULTS ANALYSIS SCREEN
+       ---------------------------------- */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .score-gauge-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .gauge-wrapper {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 1.5rem;
+    }
+    .gauge-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    .gauge-bg {
+      fill: none;
+      stroke: var(--bg-card);
+      stroke-width: 8px;
+    }
+    .gauge-fill {
+      fill: none;
+      stroke-width: 8px;
+      stroke-linecap: round;
+      stroke-dasharray: 251.2;
+      stroke-dashoffset: 251.2;
+      transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .gauge-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .gauge-pct {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .gauge-fraction {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.25rem;
+    }
+
+    .results-verdict {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+
+    /* Diagnostics cards & bars */
+    .diagnostics-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .stats-breakdown-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .stat-bar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-bar-card.correct { border-bottom: 3px solid var(--success); }
+    .stat-bar-card.wrong { border-bottom: 3px solid var(--danger); }
+    .stat-bar-card.skipped { border-bottom: 3px solid var(--text-muted); }
+    .stat-bar-card .lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .stat-bar-card .val {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .section-scores-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .section-scores-card h3 {
+      font-size: 16px;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-progress-row {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .sec-progress-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sec-progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .sec-progress-bar-bg {
+      background: var(--bg-card);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .sec-progress-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Detailed Review Explorer */
+    .review-explorer {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+      margin-top: 1.5rem;
+    }
+    .review-explorer h3 {
+      font-size: 16px;
+      margin-bottom: 1rem;
+    }
+
+    /* Filter Toolbar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .filter-tab:hover {
+      background: var(--bg-card-hover);
+    }
+    .filter-tab.active {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: #fff;
+    }
+
+    .search-wrapper {
+      position: relative;
+      min-width: 240px;
+    }
+    @media (max-width: 600px) {
+      .search-wrapper {
+        width: 100%;
+      }
+    }
+    .search-input {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: var(--font-sans);
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--brand-blue);
+    }
+    .search-icon-svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Accordion items */
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .review-accordion {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+    .review-header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      gap: 12px;
+    }
+    .review-header:hover {
+      background: var(--bg-card-hover);
+    }
+    .review-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .review-header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rev-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .rev-badge.c { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+    .rev-badge.w { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger-border); }
+    .rev-badge.s { background: var(--border-strong); color: var(--text-secondary); border: 1px solid var(--border); }
+
+    .review-body {
+      padding: 16px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+    .review-body.open {
+      display: block;
+    }
+
+    .rev-q-text {
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .rev-option {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .rev-option.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+    .rev-option.wrong {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+    
+    .chevron-icon {
+      transition: transform 0.2s;
+    }
+    .review-body.open + .review-header .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Footer styling */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR HEADER -->
+  <nav class="navbar" id="app-nav">
+    <div class="nav-container">
+      <a href="#" class="logo" onclick="location.reload()">
+        <span class="logo-badge">HR</span>
+        <span>Mock Portal</span>
+      </a>
+      <div class="nav-actions">
+        <button class="btn-icon" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+          <!-- Sun Icon SVG (Dark Mode Indicator) -->
+          <svg id="theme-sun" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/></svg>
+          <!-- Moon Icon SVG (Light Mode Indicator) -->
+          <svg id="theme-moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button class="btn" id="nav-reset-btn" onclick="confirmReset()" style="display:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          Reset
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="wrap">
+    
+    <!-- 1. START SCREEN -->
+    <section id="start-screen" class="animate-fade-in">
+      <div class="hero-card">
+        <h1>HighRadius Consulting Intern Mock Test</h1>
+        <p>A full-length preparation portal mirroring the real exam breakdown and cutting-edge scoring cutoffs.</p>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="label">Questions</div>
+            <div class="val">70 Qs</div>
+            <svg class="icon-tag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8"/><path d="M12 18h.01"/></svg>
+          </div>
+          <div class="stat-card">
+            <div class="label">Time Limit</div>
+            <div class="val">120 Mins</div>
+            <svg class="icon-tag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="stat-card">
+            <div class="label">Total Sections</div>
+            <div class="val">5 Sections</div>
+            <svg class="icon-tag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          </div>
+          <div class="stat-card">
+            <div class="label">Cutoff Score</div>
+            <div class="val">70% (49 Qs)</div>
+            <svg class="icon-tag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+          </div>
+        </div>
+
+        <div class="instructions-card">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>
+            Exam Structure & Guidelines
+          </h3>
+          <ul>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>SQL is 43% of the grade:</strong> Focus on writing efficient JOINs, aggregates, and window function logic.</span>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Immediate Feedback:</strong> The system locks in your response and shows detailed conceptual explanations instantly.</span>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Progress Auto-Save:</strong> Refresh or close the page safely; your progress, timer, and bookmarks will persist.</span>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Keyboard Shortcuts:</strong> Use <kbd>A</kbd>, <kbd>B</kbd>, <kbd>C</kbd>, <kbd>D</kbd> keys to choose options, and <kbd>←</kbd> <kbd>→</kbd> arrows to navigate. Press <kbd>F</kbd> to bookmark.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="start-actions">
+          <button class="btn primary" onclick="startQuiz(false)">
+            Start mock test 
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" x2="17" y1="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </button>
+          <button class="btn" id="resume-btn" onclick="startQuiz(true)" style="display:none;">
+            Resume active test 
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. QUIZ WORKSPACE -->
+    <section id="quiz-screen" class="quiz-layout animate-fade-in" style="display:none;">
+      
+      <!-- Sidebar Control Center -->
+      <aside class="quiz-sidebar">
+        <!-- Timer & Overall Progress -->
+        <div class="sidebar-card">
+          <div class="timer-display">
+            <span class="timer-val" id="timer">120:00</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="test-progress-info">
+            <span>Overall Progress</span>
+            <span id="progress-text">0/70 (0%)</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="prog"></div>
+          </div>
+        </div>
+
+        <!-- Section Shortcuts -->
+        <div class="sidebar-card">
+          <div class="grid-container-title">Sections</div>
+          <div class="section-list" id="sections-shortcuts">
+            <!-- Dynamic Section list -->
+          </div>
+        </div>
+
+        <!-- Question Grid Matrix -->
+        <div class="sidebar-card">
+          <div class="grid-container-title">
+            <span>Question Navigator</span>
+            <span id="grid-stats">0/70 Answered</span>
+          </div>
+          <div class="q-grid" id="q-nav-grid">
+            <!-- Dynamic Grid Items (1 - 70) -->
+          </div>
+        </div>
+
+        <!-- End Test Trigger -->
+        <button class="btn warning" onclick="confirmSubmitTest()" style="width: 100%; justify-content: center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          Submit Mock Test
+        </button>
+      </aside>
+
+      <!-- Main Canvas for Active Question -->
+      <article class="question-card animate-fade-in" id="q-canvas">
+        <div id="q-container">
+          <!-- Dynamic Question Data -->
+        </div>
+        
+        <!-- Controls & Navigation -->
+        <div class="control-bar">
+          <button class="btn" id="prevBtn" onclick="navigate(-1)" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Prev Question
+          </button>
+          
+          <button class="btn" id="bookmarkBtn" onclick="toggleBookmark(current)">
+            <svg id="bookmarkIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <span id="bookmarkText">Bookmark Question</span>
+          </button>
+          
+          <button class="btn primary" id="nextBtn" onclick="navigate(1)">
+            Next Question
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 3. RESULTS & PERFORMANCE PORTAL -->
+    <section id="results-screen" class="animate-fade-in" style="display:none;">
+      
+      <h2 style="font-size:22px; margin-bottom:1.5rem;">Performance Diagnostic Dashboard</h2>
+      
+      <div class="results-grid">
+        <!-- Score Circular Gauge -->
+        <div class="score-gauge-card">
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 100 100">
+              <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+              <circle class="gauge-fill" id="results-gauge" cx="50" cy="50" r="40"/>
+            </svg>
+            <div class="gauge-text">
+              <div class="gauge-pct" id="results-score-pct">0%</div>
+              <div class="gauge-fraction" id="results-score-fraction">0/70</div>
+            </div>
+          </div>
+          
+          <div id="results-grade-badge" class="grade-badge">Grade -</div>
+          <div class="results-verdict" id="results-verdict-text">Verdict analysis loading...</div>
+          
+          <div style="margin-top: 1.5rem; display: flex; gap: 10px; justify-content: center;">
+            <button class="btn primary" onclick="confirmReset()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              Retake Test
+            </button>
+          </div>
+        </div>
+
+        <!-- Breakdown & Analytics -->
+        <div class="diagnostics-container">
+          <!-- Quick Stat Cards -->
+          <div class="stats-breakdown-row">
+            <div class="stat-bar-card correct">
+              <div class="lbl">Correct</div>
+              <div class="val" id="stats-correct" style="color:var(--success);">0</div>
+            </div>
+            <div class="stat-bar-card wrong">
+              <div class="lbl">Wrong</div>
+              <div class="val" id="stats-wrong" style="color:var(--danger);">0</div>
+            </div>
+            <div class="stat-bar-card skipped">
+              <div class="lbl">Skipped</div>
+              <div class="val" id="stats-skipped" style="color:var(--text-muted);">0</div>
+            </div>
+          </div>
+
+          <!-- Section-wise chart cards -->
+          <div class="section-scores-card">
+            <h3>Accuracy by Subject Domain</h3>
+            <div class="section-progress-row" id="results-section-chart">
+              <!-- Dynamic Horizontal Progress Bars -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Explorer Table -->
+      <div class="review-explorer">
+        <h3>Question-by-Question Diagnostics</h3>
+        
+        <div class="filter-bar">
+          <div class="filter-tabs" id="review-filter-tabs">
+            <span class="filter-tab active" onclick="filterReview('all')">All (<span id="f-all">0</span>)</span>
+            <span class="filter-tab" onclick="filterReview('correct')">Correct (<span id="f-correct">0</span>)</span>
+            <span class="filter-tab" onclick="filterReview('wrong')">Wrong (<span id="f-wrong">0</span>)</span>
+            <span class="filter-tab" onclick="filterReview('skipped')">Skipped (<span id="f-skipped">0</span>)</span>
+            <span class="filter-tab" onclick="filterReview('bookmarked')">Bookmarked (<span id="f-bookmarked">0</span>)</span>
+          </div>
+          
+          <div class="search-wrapper">
+            <svg class="search-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="review-search" placeholder="Search questions or concepts..." oninput="searchReview()">
+          </div>
+        </div>
+
+        <div class="review-list" id="results-review-accordion-list">
+          <!-- Dynamic Accordion list -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>HighRadius consulting intern Mock Test Portal · Built for professional assessment preparation.</p>
+  </footer>
+
+  <!-- ----------------------------------
+       QUESTION DATABASE & LOGIC
+       ---------------------------------- */ -->
+  <script>
+    const SECTIONS = ['SQL','Quant','Verbal','Reading Comp','Pattern'];
+    
+    // Exact original database, with Q63 (Coding-decoding) BAT answer corrected to index 1 (value 23).
+    const ALL_QUESTIONS = [
+      // === SQL (30 questions) ===
+      {s:'SQL',concept:'Basic SELECT & DISTINCT',q:'Which query correctly retrieves unique department names from the employees table?',opts:['SELECT department FROM employees','SELECT UNIQUE department FROM employees','SELECT DISTINCT department FROM employees','SELECT department DISTINCT FROM employees'],a:2,exp:'<strong>DISTINCT</strong> is the correct keyword to eliminate duplicate rows. UNIQUE is not valid SQL syntax in a SELECT statement — it is used in constraints (UNIQUE constraint on a column).'},
+      {s:'SQL',concept:'NULL handling',q:'Which condition correctly finds employees with no manager assigned?',opts:['WHERE manager_id = NULL','WHERE manager_id != NULL','WHERE manager_id IS NULL','WHERE manager_id == NULL'],a:2,exp:'In SQL, NULL cannot be compared with = or !=. You must always use <strong>IS NULL</strong> or <strong>IS NOT NULL</strong>. Any comparison using = NULL always evaluates to NULL (unknown), never TRUE.'},
+      {s:'SQL',concept:'WHERE vs HAVING',q:'Which query finds departments where the average salary exceeds 60,000?',code:'-- employees(emp_id, name, dept, salary)',opts:['SELECT dept FROM employees WHERE AVG(salary) > 60000','SELECT dept, AVG(salary) FROM employees GROUP BY dept HAVING AVG(salary) > 60000','SELECT dept FROM employees GROUP BY dept WHERE AVG(salary) > 60000','SELECT dept, AVG(salary) FROM employees HAVING AVG(salary) > 60000 GROUP BY dept'],a:1,exp:'<strong>HAVING</strong> filters after aggregation; <strong>WHERE</strong> filters before. You cannot use aggregate functions like AVG() in a WHERE clause. Also, HAVING must come after GROUP BY, not before.'},
+      {s:'SQL',concept:'COUNT(*) vs COUNT(col)',q:'Table orders has 10 rows, 3 of which have NULL in the discount column. What does COUNT(discount) return?',opts:['10','3','7','Error'],a:2,exp:'<strong>COUNT(column_name)</strong> ignores NULLs and counts only non-NULL values. So with 3 NULLs out of 10, it returns 7. COUNT(*) counts all rows including NULLs, so COUNT(*) would return 10.'},
+      {s:'SQL',concept:'INNER JOIN',q:'Tables: employees(emp_id, dept_id) and departments(dept_id, dept_name). An employee exists with dept_id = 5, but no department with dept_id = 5 exists. What does INNER JOIN return for that employee?',opts:['The employee row with NULL dept_name','The employee row is excluded','An error','The employee row with dept_id = 5 repeated'],a:1,exp:'<strong>INNER JOIN</strong> only returns rows where a match exists in BOTH tables. Since dept_id = 5 has no match in departments, that employee is excluded entirely. Use LEFT JOIN if you want to keep unmatched rows from the left table.'},
+      {s:'SQL',concept:'LEFT JOIN',q:'How many rows does a LEFT JOIN return when the left table has 5 rows and 2 rows have no match in the right table?',opts:['3 rows','5 rows','Depends on right table size','2 rows'],a:1,exp:'<strong>LEFT JOIN</strong> always returns ALL rows from the left table. Rows with no match in the right table get NULLs for right-table columns. So the result always has at least as many rows as the left table — here, 5 rows.'},
+      {s:'SQL',concept:'Self JOIN',q:'Table employees(emp_id, name, manager_id). Which query lists each employee with their manager\'s name?',opts:['SELECT e1.name, e2.name AS manager FROM employees e1 JOIN employees e1 ON e1.manager_id = e2.emp_id','SELECT e1.name, e2.name AS manager FROM employees e1 JOIN employees e2 ON e1.manager_id = e2.emp_id','SELECT name, manager_id FROM employees WHERE manager_id IS NOT NULL','SELECT e.name, m.name FROM employees e, manager m WHERE e.manager_id = m.emp_id'],a:1,exp:'A <strong>self JOIN</strong> joins a table to itself using two different aliases (e1 and e2). The key condition is e1.manager_id = e2.emp_id — this links each employee to the row where that person is the manager. Option A fails because it uses the same alias e1 twice.'},
+      {s:'SQL',concept:'CROSS JOIN',q:'Table A has 4 rows and Table B has 6 rows. How many rows does CROSS JOIN produce?',opts:['10','24','2','Depends on WHERE clause'],a:1,exp:'<strong>CROSS JOIN</strong> produces a Cartesian product — every row from A paired with every row from B. So 4 × 6 = <strong>24 rows</strong>. No WHERE clause is needed (and adding one just filters the result, it doesn\'t change the base definition).'},
+      {s:'SQL',concept:'Subquery with IN',q:'Which query finds employees who work in departments located in Mumbai?',code:'-- employees(emp_id, name, dept_id)\n-- departments(dept_id, dept_name, location)',opts:['SELECT name FROM employees WHERE dept_id = (SELECT dept_id FROM departments WHERE location="Mumbai")','SELECT name FROM employees WHERE dept_id IN (SELECT dept_id FROM departments WHERE location="Mumbai")','SELECT name FROM employees, departments WHERE location="Mumbai"','SELECT name FROM employees JOIN departments WHERE location="Mumbai"'],a:1,exp:'When a subquery returns <strong>multiple rows</strong>, you must use <strong>IN</strong>, not =. Using = with a multi-row subquery causes an error. The subquery SELECT dept_id FROM departments WHERE location="Mumbai" could return multiple dept_ids.'},
+      {s:'SQL',concept:'Correlated subquery',q:'What makes a correlated subquery different from a regular subquery?',opts:['It uses GROUP BY inside','It references a column from the outer query','It always uses EXISTS','It runs only once for the whole query'],a:1,exp:'A <strong>correlated subquery</strong> references a column from the outer query (e.g., WHERE e2.dept = e1.dept). This means it re-executes once for every row of the outer query, making it powerful but potentially slower than non-correlated subqueries.'},
+      {s:'SQL',concept:'RANK vs DENSE_RANK',q:'Salaries: 90k, 85k, 85k, 70k. What does DENSE_RANK() OVER (ORDER BY salary DESC) return for the 70k employee?',opts:['4','3','2','1'],a:1,exp:'<strong>DENSE_RANK</strong> assigns ranks without gaps. 90k = rank 1, both 85k = rank 2 (tie), 70k = rank <strong>3</strong>. Compare with RANK() which would give 70k a rank of 4 (skipping 3 due to the tie). DENSE_RANK never skips numbers.'},
+      {s:'SQL',concept:'ROW_NUMBER vs RANK',q:'With salaries 90k, 85k, 85k, 70k, what does RANK() assign to the SECOND 85k employee (in order)?',opts:['2','3','4','1'],a:0,exp:'<strong>RANK()</strong> gives ties the same rank, but skips the next rank. Both 85k employees get rank <strong>2</strong>. The 70k employee gets rank 4 (not 3), because rank 3 is skipped. This is the key difference from DENSE_RANK which would give 70k rank 3.'},
+      {s:'SQL',concept:'PARTITION BY',q:'What does PARTITION BY do in a window function?',opts:['Groups rows and reduces them like GROUP BY','Splits the window into groups but keeps all rows in the result','Filters rows before the window function runs','Orders rows within each group'],a:1,exp:'<strong>PARTITION BY</strong> is like GROUP BY for window functions, but crucially it does NOT reduce rows. All rows remain in the output. The window function (RANK, SUM, etc.) restarts its calculation for each partition. This is what makes window functions powerful — rank within each department, running total per category, etc.'},
+      {s:'SQL',concept:'LAG / LEAD',q:'Which function gives you the value from the PREVIOUS row in a window?',opts:['LEAD()','PREV()','LAG()','OFFSET()'],a:2,exp:'<strong>LAG(column)</strong> accesses the value from the previous row in the window. <strong>LEAD(column)</strong> accesses the next row. Neither PREV() nor OFFSET() are valid window functions in standard SQL. Common use: LAG(salary) OVER (ORDER BY hire_date) to compare each employee\'s salary with the one hired just before them.'},
+      {s:'SQL',concept:'GROUP BY rules',q:'Which SELECT is INVALID when using GROUP BY dept?',code:'SELECT ___, AVG(salary) FROM employees GROUP BY dept',opts:['dept, AVG(salary)','AVG(salary)','dept','emp_id, AVG(salary)'],a:3,exp:'Every column in SELECT that is NOT an aggregate must appear in GROUP BY. Since we are grouping by dept only, selecting emp_id is invalid — emp_id is not in GROUP BY and not an aggregate. This is a very common exam trap.'},
+      {s:'SQL',concept:'BETWEEN',q:'WHERE salary BETWEEN 40000 AND 60000 — is 40000 included?',opts:['No, BETWEEN is exclusive on lower bound','Yes, BETWEEN is inclusive on both ends','Only if ORDER BY is specified','Depends on the database'],a:1,exp:'<strong>BETWEEN</strong> in SQL is always <strong>inclusive on BOTH ends</strong>. So BETWEEN 40000 AND 60000 includes salaries of exactly 40000 and exactly 60000. This is equivalent to: WHERE salary >= 40000 AND salary <= 60000.'},
+      {s:'SQL',concept:'LIKE patterns',q:'Which pattern matches names where the SECOND character is "a"?',opts:["LIKE 'a%'","LIKE '%a'","LIKE '_a%'","LIKE '__a'"],a:2,exp:'In SQL LIKE patterns: <strong>%</strong> matches any sequence of characters, <strong>_</strong> (underscore) matches exactly ONE character. So "_a%" means: one any character, then "a", then anything. This matches "Sam", "Cat", "name" etc. — any string where position 2 is "a".'},
+      {s:'SQL',concept:'UNION vs UNION ALL',q:'What is the difference between UNION and UNION ALL?',opts:['UNION is faster','UNION removes duplicates; UNION ALL keeps them','UNION ALL requires same column names','UNION ALL is not standard SQL'],a:1,exp:'<strong>UNION</strong> removes duplicate rows from the combined result (extra sort step). <strong>UNION ALL</strong> keeps all rows including duplicates and is faster because it skips deduplication. Both require the same number of columns and compatible data types. Use UNION ALL when you know there are no duplicates or performance matters.'},
+      {s:'SQL',concept:'DELETE vs TRUNCATE vs DROP',q:'Which statement removes ALL rows but keeps the table structure?',opts:['DROP TABLE employees','DELETE FROM employees','TRUNCATE TABLE employees','REMOVE FROM employees'],a:2,exp:'<strong>TRUNCATE</strong> removes all rows instantly and keeps the table structure (columns, constraints). <strong>DELETE FROM employees</strong> (without WHERE) also removes all rows but is slower as it logs each row. <strong>DROP TABLE</strong> removes the table entirely including structure. REMOVE is not valid SQL.'},
+      {s:'SQL',concept:'COALESCE',q:'What does COALESCE(NULL, NULL, 5, 10) return?',opts:['NULL','10','5','Error'],a:2,exp:'<strong>COALESCE</strong> returns the first NON-NULL value from its arguments. It scans left to right: first arg is NULL (skip), second is NULL (skip), third is 5 — return <strong>5</strong>. It never reaches 10. Common use: COALESCE(discount, 0) to replace NULLs with 0.'},
+      {s:'SQL',concept:'CASE statement',q:'In a CASE statement with multiple WHEN conditions, which one is evaluated?',opts:['All matching conditions — results are combined','The last matching condition','The first matching condition','Random matching condition'],a:2,exp:'CASE evaluates conditions <strong>top to bottom</strong> and returns the result of the <strong>first matching WHEN</strong>. Once a match is found, evaluation stops. This matters when ranges overlap — always put more specific conditions first. If no WHEN matches and no ELSE exists, the result is NULL.'},
+      {s:'SQL',concept:'Execution order',q:'In what order does SQL actually execute this query: SELECT dept, AVG(salary) FROM employees WHERE salary > 30000 GROUP BY dept HAVING COUNT(*) > 5 ORDER BY dept?',opts:['SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY','FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY','FROM → SELECT → WHERE → GROUP BY → ORDER BY → HAVING','WHERE → FROM → GROUP BY → SELECT → HAVING → ORDER BY'],a:1,exp:'SQL execution order: <strong>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY</strong>. This explains why you can\'t use a SELECT alias in WHERE (SELECT hasn\'t run yet), but you CAN use it in ORDER BY. HAVING always comes after GROUP BY since it filters grouped results.'},
+      {s:'SQL',concept:'CTE syntax',q:'Which correctly defines a CTE?',opts:['CTE dept_avg AS (SELECT dept, AVG(salary) FROM employees GROUP BY dept)','WITH dept_avg AS (SELECT dept, AVG(salary) FROM employees GROUP BY dept) SELECT * FROM dept_avg','SELECT * FROM (WITH dept_avg AS (SELECT dept, AVG(salary) FROM employees GROUP BY dept))','DEFINE dept_avg AS SELECT dept, AVG(salary) FROM employees GROUP BY dept'],a:1,exp:'CTE syntax: <strong>WITH cte_name AS (subquery) main_query</strong>. The WITH clause comes before the main SELECT. CTEs are not defined with the keyword CTE, and they cannot be nested inside a FROM clause. They exist only for the duration of the query.'},
+      {s:'SQL',concept:'String functions',q:'What does SUBSTRING("HighRadius", 5, 6) return?',opts:['Radi','Radius','HighRa','adius'],a:1,exp:'<strong>SUBSTRING(str, start, length)</strong> — start position is 1-indexed. Position 5 of "HighRadius" is "R", and we take 6 characters: R-a-d-i-u-s = <strong>"Radius"</strong>. Common trap: SQL string indexing starts at 1, not 0 like most programming languages.'},
+      {s:'SQL',concept:'Aggregate with NULL',q:'Column bonus has values: 500, NULL, 300, NULL, 200. What does AVG(bonus) return?',opts:['200','300','220','NULL'],a:1,exp:'<strong>AVG()</strong> ignores NULL values entirely — both numerator and denominator. So AVG(bonus) = (500 + 300 + 200) / 3 = 1000 / 3 ≈ <strong>333.33</strong>. The closest options are 300. In exam MCQs: AVG ignores NULLs, so denominator is 3 non-null values. Answer: 1000/3 ≈ 333.'},
+      {s:'SQL',concept:'PRIMARY KEY vs UNIQUE',q:'What is the main difference between PRIMARY KEY and UNIQUE constraint?',opts:['PRIMARY KEY allows NULLs; UNIQUE does not','UNIQUE allows one NULL; PRIMARY KEY allows none','PRIMARY KEY allows multiple per table; UNIQUE allows one','Both are identical in behavior'],a:1,exp:'<strong>PRIMARY KEY</strong>: uniqueness + NOT NULL, only ONE per table. <strong>UNIQUE</strong>: uniqueness only, allows one NULL (in most databases), and a table can have multiple UNIQUE constraints.'},
+      {s:'SQL',concept:'HAVING without GROUP BY',q:'What does this query return? SELECT COUNT(*) FROM employees HAVING COUNT(*) > 10',opts:['Error — HAVING requires GROUP BY','Returns the count if employees > 10, else empty result','Returns all employees','Returns 10'],a:1,exp:'HAVING without GROUP BY is valid — it treats the entire table as one group. The query returns COUNT(*) if the condition is met, otherwise returns no rows (empty result).'},
+      {s:'SQL',concept:'EXIST vs IN performance',q:'EXISTS returns TRUE when the subquery returns:',opts:['A specific value','NULL','At least one row','All matching rows'],a:2,exp:'<strong>EXISTS</strong> short-circuits — it returns TRUE as soon as it finds even ONE row in the subquery. It doesn\'t matter what the subquery selects (SELECT 1, SELECT *, SELECT NULL — all work). This makes EXISTS highly efficient for check operations.'},
+      {s:'SQL',concept:'Window running total',q:'What does SUM(salary) OVER (ORDER BY hire_date) compute?',opts:['Total salary of all employees','Salary ranked by hire date','Cumulative salary sum ordered by hire date','Average salary per hire date'],a:2,exp:'SUM() with OVER (ORDER BY col) creates a <strong>running/cumulative total</strong>. Each row\'s value is the sum of all salaries from the first row up to and including the current row.'},
+      {s:'SQL',concept:'FULL OUTER JOIN',q:'FULL OUTER JOIN returns:',opts:['Only rows matching in both tables','All rows from left, NULLs for unmatched right','All rows from both tables, NULLs where no match','All rows from right, NULLs for unmatched left'],a:2,exp:'<strong>FULL OUTER JOIN</strong> is the union of LEFT JOIN and RIGHT JOIN. It returns every row from both tables, placing NULLs where matches are absent.'},
+      
+      // === QUANT (10 questions) ===
+      {s:'Quant',concept:'Percentages',q:'A product costs ₹800 and is marked up 25%, then discounted 20%. What is the final price?',opts:['₹800','₹780','₹760','₹820'],a:0,exp:'Marked up 25%: 800 × 1.25 = ₹1000. Discounted 20%: 1000 × 0.80 = <strong>₹800</strong>. A 25% markup followed by a 20% discount brings you back to the original price.'},
+      {s:'Quant',concept:'Time & Work',q:'A can complete work in 12 days, B in 18 days. Working together, how many days to finish?',opts:['7.2 days','8 days','6 days','9 days'],a:0,exp:"Combined rate = 1/12 + 1/18 = 3/36 + 2/36 = 5/36 per day. Days = 36/5 = <strong>7.2 days</strong>. Formula: ab / (a+b) = (12×18) / (12+18) = 216 / 30 = 7.2 days."},
+      {s:'Quant',concept:'Speed, Distance, Time',q:'A train 300m long passes a pole in 15 seconds. Speed in km/h?',opts:['72 km/h','60 km/h','20 km/h','54 km/h'],a:0,exp:'Speed = Distance/Time = 300m / 15s = 20 m/s. Convert to km/h: 20 × 18/5 = <strong>72 km/h</strong>. (m/s to km/h: multiply by 18/5).'},
+      {s:'Quant',concept:'Simple & Compound Interest',q:'₹10,000 at 10% compound interest for 2 years. Total amount?',opts:['₹12,000','₹12,100','₹11,000','₹12,200'],a:1,exp:'CI formula: A = P(1 + r/100)^t = 10000 × (1.1)² = 10000 × 1.21 = <strong>₹12,100</strong>.'},
+      {s:'Quant',concept:'Ratio & Proportion',q:'Salaries of A and B are in ratio 5:7. If B earns ₹35,000, what does A earn?',opts:['₹25,000','₹28,000','₹30,000','₹20,000'],a:0,exp:'5:7 ratio means B = 7 parts = ₹35,000, so 1 part = ₹5,000. A = 5 parts = 5 × 5000 = <strong>₹25,000</strong>.'},
+      {s:'Quant',concept:'Profit & Loss',q:'Cost price ₹500, selling price ₹425. What is the loss percentage?',opts:['15%','17.5%','12.5%','20%'],a:0,exp:'Loss = 500 - 425 = ₹75. Loss% = (Loss/CP) × 100 = (75/500) × 100 = <strong>15%</strong>. Always calculate profit/loss percentage on the COST PRICE.'},
+      {s:'Quant',concept:'Averages',q:'Average of 8 numbers is 40. If one number (88) is removed, what is the new average?',opts:['33.1','36','32','35'],a:0,exp:'Total of 8 numbers = 8 × 40 = 320. Remove 88: 320 - 88 = 232 remaining across 7 numbers. New average = 232/7 ≈ <strong>33.14</strong>.'},
+      {s:'Quant',concept:'Probability',q:'A bag has 4 red, 6 blue, 5 green balls. Probability of picking a non-red ball?',opts:['4/15','11/15','7/15','1/3'],a:1,exp:'Total balls = 4 + 6 + 5 = 15. Non-red = 6 + 5 = 11. P(non-red) = <strong>11/15</strong>.'},
+      {s:'Quant',concept:'Number series',q:'What comes next? 2, 6, 12, 20, 30, __',opts:['40','42','44','38'],a:1,exp:'Differences: 4, 6, 8, 10, 12 (increasing by 2 each time). Next difference = 12. So 30 + 12 = <strong>42</strong>. Pattern: n(n+1).'},
+      {s:'Quant',concept:'Permutation & Combination',q:'How many ways to arrange letters in "LEVEL"?',opts:['60','30','120','20'],a:1,exp:'LEVEL has 5 letters with L appearing 2 times and E appearing 2 times. Arrangements = 5! / (2! × 2!) = 120 / 4 = <strong>30</strong>.'},
+      
+      // === VERBAL (10 questions) ===
+      {s:'Verbal',concept:'Grammar — Subject-Verb agreement',q:'Choose the grammatically correct sentence:',opts:['The team of analysts are working hard.','The team of analysts is working hard.','The team of analysts were working hard.','The team of analysts have worked hard.'],a:1,exp:'"Team" is a collective noun and takes a <strong>singular verb</strong>. So "the team IS" is correct. "The team of analysts" — the subject is "team" (singular), not "analysts".'},
+      {s:'Verbal',concept:'Synonyms',q:'Which word is closest in meaning to "MITIGATE"?',opts:['Aggravate','Alleviate','Amplify','Assert'],a:1,exp:'<strong>Mitigate</strong> means to make something less severe. The closest synonym is <strong>Alleviate</strong> (to reduce or relieve).'},
+      {s:'Verbal',concept:'Antonyms',q:'Which word is the OPPOSITE of "LUCID"?',opts:['Clear','Transparent','Obscure','Bright'],a:2,exp:'<strong>Lucid</strong> means clear or easy to understand. Its antonym is <strong>Obscure</strong> — unclear or hard to understand.'},
+      {s:'Verbal',concept:'Error spotting',q:'Identify the error: "Neither of the candidates have submitted their report."',opts:['Neither of','the candidates','have submitted','their report'],a:2,exp:'"Neither" is singular and requires a singular verb. The correct verb is <strong>"has submitted"</strong>, not "have submitted".'},
+      {s:'Verbal',concept:'Fill in the blanks',q:'The consultant\'s presentation was so _____ that the client immediately approved the proposal.',opts:['verbose','compelling','ambiguous','redundant'],a:1,exp:'The sentence says the client "immediately approved" — this is a positive outcome. <strong>Compelling</strong> (convincing, powerful) fits logically.'},
+      {s:'Verbal',concept:'One-word substitution',q:'A person who works for another without pay, in order to gain work experience is called:',opts:['Volunteer','Novice','Intern','Apprentice'],a:2,exp:'An <strong>Intern</strong> is specifically someone (usually a student) who works to gain experience, sometimes unpaid.'},
+      {s:'Verbal',concept:'Sentence completion',q:'Despite his _____ schedule, the project manager ensured all deliverables were completed on time.',opts:['relaxed','hectic','flexible','predictable'],a:1,exp:'The word "despite" signals a contrast — the manager succeeded despite a challenge. A <strong>hectic</strong> (extremely busy) schedule is the logical challenge.'},
+      {s:'Verbal',concept:'Idioms',q:'What does the idiom "hit the ground running" mean?',opts:['To fail at the start','To begin something energetically and effectively','To run away from a problem','To cause a problem immediately'],a:1,exp:'"Hit the ground running" means to <strong>start something quickly and do it energetically and effectively from the very beginning</strong>.'},
+      {s:'Verbal',concept:'Prepositions',q:'Choose the correct preposition: "The report was submitted _____ the deadline."',opts:['before','prior','ahead','all of these'],a:3,exp:'All three — <strong>before, prior to, and ahead of</strong> — can correctly precede "the deadline" with the same meaning.'},
+      {s:'Verbal',concept:'Para-jumbles',q:'Arrange sentences logically: (A) The client approved the implementation plan. (B) The team conducted a requirements workshop. (C) HighRadius deployed the cloud product. (D) Post go-live, the team provided hyper-care support.',opts:['A-B-C-D','B-A-C-D','C-B-A-D','B-C-A-D'],a:1,exp:'Logical project lifecycle order: (B) Requirements workshop first → (A) Client approves plan → (C) Deploy/implement → (D) Post go-live support.'},
+      
+      // === READING COMP (10 questions) ===
+      {s:'Reading Comp',concept:'Main idea',q:'Passage: "HighRadius\'s Autonomous Finance Platform helps Fortune 1000 companies automate Order-to-Cash, Treasury, and Record-to-Report processes. By leveraging AI, companies like 3M and Unilever have reduced manual intervention by up to 80%, freeing finance teams to focus on strategic decisions rather than routine tasks."\n\nWhat is the PRIMARY purpose of this passage?',opts:['To explain AI technology in detail','To describe how automation benefits finance operations','To list companies that use HighRadius','To compare manual and automated finance tasks'],a:1,exp:'The passage\'s core message is that <strong>automation benefits finance operations</strong> — specifically reducing manual work and freeing teams for strategy.'},
+      {s:'Reading Comp',concept:'Inference',q:'Passage: "Consultants at HighRadius serve as the primary Point of Contact throughout all project phases, from requirements gathering to hyper-care. They collaborate with Product, Engineering, and QA teams to ensure client KPIs are met."\n\nWhat can be INFERRED about the consulting role?',opts:['Consultants only handle technical tasks','Consultants work in isolation from other teams','The role requires both communication and cross-functional collaboration skills','Consultants are involved only post go-live'],a:2,exp:'The passage says consultants are the primary POC AND collaborate with multiple teams. This clearly implies <strong>both communication and cross-functional collaboration</strong> are essential.'},
+      {s:'Reading Comp',concept:'Vocabulary in context',q:'Passage: "The implementation consultant must be meticulous in tracking project milestones to ensure seamless delivery within the agreed timeline."\n\nIn this context, "meticulous" most nearly means:',opts:['Careless','Extremely careful and precise','Quick and efficient','Innovative'],a:1,exp:'<strong>Meticulous</strong> in this context means extremely careful and precise — paying close attention to every detail.'},
+      {s:'Reading Comp',concept:'Fact vs opinion',q:'Passage: "HighRadius serves over 700 Fortune 1000 companies and generates $100M+ ARR with 24% YoY growth. The company is clearly the best autonomous finance platform available in the market."\n\nWhich statement is a FACT?',opts:['HighRadius is the best platform','HighRadius generates over $100M ARR','All Fortune 1000 companies use HighRadius','24% growth is exceptional for a SaaS company'],a:1,exp:'A <strong>fact</strong> is objectively verifiable. "Generates $100M+ ARR" is a stated, verifiable statistic.'},
+      {s:'Reading Comp',concept:'Author\'s tone',q:'Passage: "Despite implementation challenges, the consultant\'s persistence and client-first mindset transformed what could have been a failed project into a showcase success story, earning a standing ovation from the CFO."\n\nThe author\'s tone is:',opts:['Critical and analytical','Admiring and celebratory','Neutral and informative','Cautious and skeptical'],a:1,exp:'Words like "showcase success story" and "standing ovation" reveal an <strong>admiring and celebratory</strong> tone.'},
+      {s:'Reading Comp',concept:'True/False/Cannot Say',q:'Passage: "HighRadius has raised funding at a $3.1B valuation and counts Sanofi, Kellogg, and Hershey\'s among its clients."\n\nClaim: "HighRadius is a publicly listed company."',opts:['True','False','Cannot be determined from the passage'],a:2,exp:'The passage mentions valuation but does not explicitly state if the company is private or public. Therefore, it <strong>cannot be determined</strong> from the text alone.'},
+      {s:'Reading Comp',concept:'Specific detail',q:'Passage: "The project lifecycle at HighRadius includes: Requirements, Design, Build/Configure, Testing & Training, Cutover, Go-live, and Hyper-care phases."\n\nWhich phase comes IMMEDIATELY after Testing & Training?',opts:['Go-live','Design','Cutover','Hyper-care'],a:2,exp:'Per the sequence: Testing & Training → <strong>Cutover</strong> → Go-live. Cutover immediately follows Testing & Training.'},
+      {s:'Reading Comp',concept:'Summary',q:'Passage: "Autonomous finance platforms use AI to eliminate repetitive, rules-based financial tasks. This allows CFOs to redirect resources toward forecasting, risk management, and strategic planning, ultimately improving decision quality and organizational agility."\n\nBest summary:',opts:['AI eliminates all finance jobs','Finance automation lets CFOs focus on strategy','HighRadius improves risk management','AI replaces human judgment in finance'],a:1,exp:'The passage\'s core argument: automation removes repetitive tasks → CFOs can focus on strategy.'},
+      {s:'Reading Comp',concept:'Title selection',q:'Passage discusses how HighRadius consultants manage client expectations, handle escalations, and deliver business outcomes through structured communication. The best title would be:',opts:['SQL in consulting','The technical consultant role','Managing client relationships in implementation consulting','How to code for finance'],a:2,exp:'The passage focuses on client expectations, escalations, communication, and outcomes. "Managing client relationships in implementation consulting" captures all these elements.'},
+      {s:'Reading Comp',concept:'Logical conclusion',q:'Passage: "Companies using HighRadius\'s AI-powered platform report significant reduction in Days Sales Outstanding (DSO) and improved cash flow predictability."\n\nWhich conclusion is MOST logical?',opts:['All companies see identical improvements','The platform positively impacts financial performance metrics','Human finance teams become unnecessary','DSO reduction is the only benefit'],a:1,exp:'Reducing DSO and improving cash flow predictability are both financial performance metrics, concluding that <strong>the platform positively impacts financial performance metrics</strong>.'},
+      
+      // === PATTERN MATCHING (10 questions) ===
+      {s:'Pattern',concept:'Number series',q:'What is the next number? 3, 9, 27, 81, ___',opts:['162','243','216','729'],a:1,exp:'Each term is multiplied by 3 (geometric series, ratio = 3). 81 × 3 = <strong>243</strong>.'},
+      {s:'Pattern',concept:'Letter series',q:'What comes next? A, C, F, J, O, ___',opts:['U','T','V','S'],a:0,exp:'Gaps between letters: A→C(+2), C→F(+3), F→J(+4), J→O(+5), O→?(+6). O is the 15th letter, +6 = 21st letter = <strong>U</strong>.'},
+      {s:'Pattern',concept:'Coding-decoding',q:'If CAT = 24, DOG = 26, then what is BAT?',opts:['22','23','21','25'],a:1,exp:'C(3)+A(1)+T(20)=24. D(4)+O(15)+G(7)=26. Pattern: sum of alphabetical positions. B(2)+A(1)+T(20) = <strong>23</strong>. Option B matches.'},
+      {s:'Pattern',concept:'Odd one out',q:'Which is the ODD one out? 144, 169, 196, 225, 256, 289, 280',opts:['144','225','280','289'],a:2,exp:'144=12², 225=15², 289=17² — all perfect squares. <strong>280</strong> is not a perfect square.'},
+      {s:'Pattern',concept:'Figure series — shape logic',q:'In a series of shapes: △ □ △△ □□ △△△ □□□, what comes next?',opts:['□□□□','△△△△','△△△△△','□'],a:0,exp:'Pattern: alternates between triangles and squares, each time one more than before. △(1) □(1) △△(2) □□(2) △△△(3) □□□(3) → next is <strong>□□□□</strong> (4 squares).'},
+      {s:'Pattern',concept:'Analogy',q:'Consultant : Client :: Doctor : ___',opts:['Medicine','Hospital','Patient','Nurse'],a:2,exp:'A Consultant serves a <strong>Client</strong>. A Doctor serves a <strong>Patient</strong> (professional → recipient relationship).'},
+      {s:'Pattern',concept:'Mirror image',q:'If "HIGHRADIUS" is written as a mirror image (left-right flip), which letter appears where "H" (first letter) was?',opts:['H reversed','S reversed','U reversed','S'],a:1,exp:'In a left-right mirror image, the LAST letter of the original word appears at the LEFT end (where the first letter was). "HIGHRADIUS" — the last letter is <strong>S</strong> (reversed/mirrored).'},
+      {s:'Pattern',concept:'Matrix pattern',q:'In a 3×3 matrix where each row sums to 15 (like a magic square), if row 1 is [2, 7, 6] and row 2 is [9, 5, 1], what must be in row 3 first position?',opts:['3','4','6','7'],a:1,exp:'Each column must also sum to 15 in a 3×3 magic square. Column 1: 2 + 9 + ? = 15, so ? = 15 - 11 = <strong>4</strong>.'},
+      {s:'Pattern',concept:'Input-output',q:'Input: 7 → Output: 50. Input: 5 → Output: 26. Input: 3 → Output: 10. Input: 9 → Output: ?',opts:['82','82','90','100'],a:0,exp:'Pattern: n² + 1. 7²+1=50, 5²+1=26, 3²+1=10. So 9²+1 = 81+1 = <strong>82</strong>.'},
+      {s:'Pattern',concept:'Missing number',q:'12 | 144 | 3\n 8 | 64 | 2\n 6 | ? | 2',opts:['36','12','72','18'],a:0,exp:'Pattern: middle number = left number squared. 12²=144, 8²=64. So 6² = <strong>36</strong>.'}
+    ];
+
+    // ----------------------------------
+    // APPLICATION STATE MANAGEMENT
+    // ----------------------------------
+    let current = 0;
+    let answers = new Array(ALL_QUESTIONS.length).fill(-1);
+    let bookmarks = new Array(ALL_QUESTIONS.length).fill(false);
+    let visited = new Array(ALL_QUESTIONS.length).fill(false);
+    
+    let endTime;
+    let timerInterval;
+    const STORAGE_KEY = 'highradius_mock_state_v2';
+    
+    // Auto load state on initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      loadTheme();
+      checkSavedState();
+    });
+
+    function saveState() {
+      const state = {
+        current,
+        answers,
+        bookmarks,
+        visited,
+        endTime,
+        started: timerInterval ? true : false
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function checkSavedState() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const state = JSON.parse(saved);
+          if (state.started && state.endTime > Date.now()) {
+            document.getElementById('resume-btn').style.display = 'inline-flex';
+          }
+        } catch (e) {
+          console.error("Error reading saved state", e);
+        }
+      }
+    }
+
+    function loadState() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const state = JSON.parse(saved);
+          current = state.current ?? 0;
+          answers = state.answers ?? new Array(ALL_QUESTIONS.length).fill(-1);
+          bookmarks = state.bookmarks ?? new Array(ALL_QUESTIONS.length).fill(false);
+          visited = state.visited ?? new Array(ALL_QUESTIONS.length).fill(false);
+          endTime = state.endTime ?? (Date.now() + 7200 * 1000);
+        } catch (e) {
+          console.error("Error loading saved state", e);
+        }
+      }
+    }
+
+    function startQuiz(resume = false) {
+      document.getElementById('start-screen').style.display = 'none';
+      document.getElementById('results-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'grid';
+      document.getElementById('nav-reset-btn').style.display = 'inline-flex';
+
+      if (resume) {
+        loadState();
+      } else {
+        // Fresh start
+        current = 0;
+        answers = new Array(ALL_QUESTIONS.length).fill(-1);
+        bookmarks = new Array(ALL_QUESTIONS.length).fill(false);
+        visited = new Array(ALL_QUESTIONS.length).fill(false);
+        visited[0] = true;
+        endTime = Date.now() + 7200 * 1000; // 120 Mins
+      }
+
+      // Initialize Timer Loop
+      clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 1000);
+      updateTimer();
+
+      renderSectionsShortcuts();
+      renderNavGrid();
+      renderQ();
+      saveState();
+    }
+
+    // ----------------------------------
+    // TIMER MODULE
+    // ----------------------------------
+    function updateTimer() {
+      const remaining = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
+      
+      if (remaining <= 0) {
+        clearInterval(timerInterval);
+        submitTestSilently();
+        return;
+      }
+
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      const el = document.getElementById('timer');
+      
+      if (el) {
+        el.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        
+        // Critical alerts coloring
+        if (remaining < 600) { // 10 minutes
+          el.className = 'timer-val danger';
+        } else if (remaining < 1800) { // 30 minutes
+          el.className = 'timer-val warn';
+        } else {
+          el.className = 'timer-val';
+        }
+      }
+
+      // Sync state periodically
+      if (remaining % 10 === 0) {
+        saveState();
+      }
+    }
+
+    // ----------------------------------
+    // NAVIGATION & RENDER WORKSPACE
+    // ----------------------------------
+    function renderSectionsShortcuts() {
+      const parent = document.getElementById('sections-shortcuts');
+      const uniqueSecs = [...new Set(ALL_QUESTIONS.map(q => q.s))];
+      
+      parent.innerHTML = uniqueSecs.map(sec => {
+        const total = ALL_QUESTIONS.filter(q => q.s === sec).length;
+        const answered = ALL_QUESTIONS.filter(q => q.s === sec && answers[ALL_QUESTIONS.indexOf(q)] !== -1).length;
+        const isActive = ALL_QUESTIONS[current].s === sec;
+        const isDone = total === answered;
+        
+        return `
+          <div class="section-item ${isActive ? 'active' : ''} ${isDone ? 'done' : ''}" onclick="jumpToSection('${sec}')">
+            <span>${sec}</span>
+            <span class="section-badge">${answered}/${total}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderNavGrid() {
+      const parent = document.getElementById('q-nav-grid');
+      let html = '';
+      
+      ALL_QUESTIONS.forEach((q, i) => {
+        let cls = 'q-grid-item';
+        
+        if (i === current) {
+          cls += ' active';
+        }
+        
+        if (answers[i] !== -1) {
+          cls += ' answered';
+          
+          // Color code correct/wrong in Navigator since feedback is immediate
+          if (answers[i] === q.a) {
+            cls += '-correct';
+          } else {
+            cls += '-wrong';
+          }
+        }
+        
+        if (bookmarks[i]) {
+          cls += ' bookmarked';
+        }
+        
+        html += `<span class="${cls}" onclick="jumpToQuestion(${i})">${i + 1}</span>`;
+      });
+      
+      parent.innerHTML = html;
+      
+      // Update sidebar grid stats
+      const answeredCount = answers.filter(a => a !== -1).length;
+      document.getElementById('grid-stats').textContent = `${answeredCount}/${ALL_QUESTIONS.length} Answered`;
+    }
+
+    function jumpToSection(sec) {
+      const targetIdx = ALL_QUESTIONS.findIndex(q => q.s === sec);
+      if (targetIdx !== -1) {
+        jumpToQuestion(targetIdx);
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      current = idx;
+      visited[current] = true;
+      renderQ();
+      renderSectionsShortcuts();
+      renderNavGrid();
+      saveState();
+    }
+
+    function renderQ() {
+      const q = ALL_QUESTIONS[current];
+      const answered = answers[current] !== -1;
+      const pct = Math.round((answers.filter(a => a !== -1).length / ALL_QUESTIONS.length) * 100);
+      
+      // Progress stats in sidebar card
+      document.getElementById('prog').style.width = pct + '%';
+      document.getElementById('progress-text').textContent = `${answers.filter(a => a !== -1).length}/${ALL_QUESTIONS.length} (${pct}%)`;
+
+      // Disable/Enable Nav buttons
+      document.getElementById('prevBtn').disabled = current === 0;
+      
+      const nextBtn = document.getElementById('nextBtn');
+      if (current === ALL_QUESTIONS.length - 1) {
+        nextBtn.innerHTML = `Finish Exam <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`;
+        nextBtn.className = 'btn warning';
+      } else {
+        nextBtn.innerHTML = `Next Question <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+        nextBtn.className = 'btn primary';
+      }
+
+      // Handle Bookmark state UI
+      const bookmarkIcon = document.getElementById('bookmarkIcon');
+      const bookmarkText = document.getElementById('bookmarkText');
+      if (bookmarks[current]) {
+        bookmarkIcon.setAttribute('fill', 'var(--brand-orange)');
+        bookmarkIcon.setAttribute('stroke', 'var(--brand-orange)');
+        bookmarkText.textContent = 'Bookmarked';
+      } else {
+        bookmarkIcon.setAttribute('fill', 'none');
+        bookmarkIcon.setAttribute('stroke', 'currentColor');
+        bookmarkText.textContent = 'Bookmark Question';
+      }
+
+      // Question tags styling helper
+      let secClass = 'sql';
+      if (q.s === 'Quant') secClass = 'quant';
+      else if (q.s === 'Verbal') secClass = 'verbal';
+      else if (q.s === 'Reading Comp') secClass = 'reading-comp';
+      else if (q.s === 'Pattern') secClass = 'pattern';
+
+      let html = `
+        <div class="q-badge-row">
+          <div class="q-badge-group">
+            <span class="sec-badge ${secClass}">${q.s}</span>
+            <span class="concept-badge">Concept: ${q.concept}</span>
+          </div>
+          <span style="font-size:12px; font-weight:700; color:var(--text-muted);">Question ${current + 1} of ${ALL_QUESTIONS.length}</span>
+        </div>
+        <p class="q-body-text">${q.q.replace(/\n/g, '<br>')}</p>
+      `;
+
+      if (q.code) {
+        html += `
+          <div class="q-code">
+            <div class="q-code-header">
+              <span>SQL QUERY SNIPPET</span>
+              <button class="q-code-copy" onclick="copyCode(this)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Copy
+              </button>
+            </div>
+            <pre class="q-code-body"><code>${q.code}</code></pre>
+          </div>
+        `;
+      }
+
+      html += `<div class="options-stack">`;
+      q.opts.forEach((opt, i) => {
+        let cls = 'option-btn';
+        let labelIcon = ['A', 'B', 'C', 'D'][i];
+        
+        if (answered) {
+          if (i === q.a) {
+            cls += ' correct';
+            labelIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+          } else if (i === answers[current]) {
+            cls += ' wrong';
+            labelIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>`;
+          }
+        } else if (i === answers[current]) {
+          cls += ' selected';
+        }
+        
+        html += `
+          <button class="${cls}" onclick="selectOpt(${i})" ${answered ? 'disabled' : ''}>
+            <span class="option-label">${labelIcon}</span>
+            <span>${opt}</span>
+          </button>
+        `;
+      });
+      html += '</div>';
+
+      if (answered) {
+        html += `
+          <div class="explanation-card animate-slide-down">
+            <div class="explanation-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8"/><path d="M12 18h.01"/></svg>
+              <span>Explanatory Solution Insight</span>
+            </div>
+            <p class="explanation-text">${q.exp}</p>
+          </div>
+        `;
+      }
+
+      document.getElementById('q-container').innerHTML = html;
+    }
+
+    function selectOpt(idx) {
+      if (answers[current] !== -1) return;
+      answers[current] = idx;
+      
+      renderQ();
+      renderSectionsShortcuts();
+      renderNavGrid();
+      saveState();
+    }
+
+    function navigate(dir) {
+      if (dir === 1 && current === ALL_QUESTIONS.length - 1) {
+        confirmSubmitTest();
+        return;
+      }
+      
+      current = Math.max(0, Math.min(ALL_QUESTIONS.length - 1, current + dir));
+      visited[current] = true;
+      
+      renderQ();
+      renderSectionsShortcuts();
+      renderNavGrid();
+      saveState();
+    }
+
+    function toggleBookmark(idx) {
+      bookmarks[idx] = !bookmarks[idx];
+      renderQ();
+      renderNavGrid();
+      saveState();
+    }
+
+    function copyCode(btn) {
+      const codeText = btn.closest('.q-code').querySelector('code').innerText;
+      navigator.clipboard.writeText(codeText).then(() => {
+        const origContent = btn.innerHTML;
+        btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
+        setTimeout(() => btn.innerHTML = origContent, 2000);
+      });
+    }
+
+    // Keyboard Shortcuts Navigation
+    document.addEventListener('keydown', (e) => {
+      // Don't trigger if user is inside search input box
+      if (document.activeElement.tagName === 'INPUT') return;
+      
+      if (document.getElementById('quiz-screen').style.display === 'grid') {
+        const key = e.key.toLowerCase();
+        if (key === 'a') selectOpt(0);
+        else if (key === 'b') selectOpt(1);
+        else if (key === 'c') selectOpt(2);
+        else if (key === 'd') selectOpt(3);
+        else if (e.key === 'ArrowLeft') navigate(-1);
+        else if (e.key === 'ArrowRight') navigate(1);
+        else if (key === 'f') toggleBookmark(current);
+      }
+    });
+
+    // ----------------------------------
+    // RESULTS & ANALYTICS REPORT
+    // ----------------------------------
+    function confirmSubmitTest() {
+      const uncompletedCount = answers.filter(a => a === -1).length;
+      let msg = 'Are you sure you want to finish and submit your mock test?';
+      if (uncompletedCount > 0) {
+        msg = `You have left ${uncompletedCount} questions unanswered. Do you still want to finish and submit the test?`;
+      }
+      
+      if (confirm(msg)) {
+        submitTestSilently();
+      }
+    }
+
+    function submitTestSilently() {
+      clearInterval(timerInterval);
+      localStorage.removeItem(STORAGE_KEY); // Clean active session
+      showResults();
+    }
+
+    function showResults() {
+      document.getElementById('quiz-screen').style.display = 'none';
+      document.getElementById('nav-reset-btn').style.display = 'none';
+      
+      const screen = document.getElementById('results-screen');
+      screen.style.display = 'block';
+      
+      // Calculate Stats
+      const total = ALL_QUESTIONS.length;
+      const correct = ALL_QUESTIONS.filter((q, i) => answers[i] === q.a).length;
+      const skipped = answers.filter(a => a === -1).length;
+      const wrong = total - correct - skipped;
+      const pct = Math.round((correct / total) * 100);
+
+      // Score Gauge Rendering
+      document.getElementById('results-score-pct').textContent = `${pct}%`;
+      document.getElementById('results-score-fraction').textContent = `${correct}/${total}`;
+
+      // Animate SVG circle stroke dashoffset
+      const gaugeCircle = document.getElementById('results-gauge');
+      const perimeter = 2 * Math.PI * 40; // 251.2
+      const offset = perimeter - (perimeter * pct) / 100;
+      
+      // Color coded gauge & badges
+      let grade, verdict, colorTheme, badgeBg, badgeText;
+      if (pct >= 85) {
+        grade = 'Grade A+';
+        verdict = 'Outstanding! You have cleared the competitive cutoff with a strong safety buffer. Very likely to clear the screeners.';
+        colorTheme = 'var(--success)';
+        badgeBg = 'var(--success-bg)';
+        badgeText = 'var(--success)';
+      } else if (pct >= 70) {
+        grade = 'Grade A';
+        verdict = 'Solid pass! You cleared the 70% threshold. To secure a safe margin, review weak sections.';
+        colorTheme = 'var(--brand-blue)';
+        badgeBg = 'rgba(14, 165, 233, 0.1)';
+        badgeText = 'var(--brand-blue)';
+      } else if (pct >= 55) {
+        grade = 'Grade B';
+        verdict = 'Borderline accuracy. HighRadius cutoffs can be competitive. Target SQL aggregates to elevate your score.';
+        colorTheme = 'var(--warning)';
+        badgeBg = 'var(--warning-bg)';
+        badgeText = 'var(--warning)';
+      } else {
+        grade = 'Grade C';
+        verdict = 'Score is currently below the target cutoff. Prioritize database SQL concepts and practice speed-work on Quantitative tests.';
+        colorTheme = 'var(--danger)';
+        badgeBg = 'var(--danger-bg)';
+        badgeText = 'var(--danger)';
+      }
+
+      gaugeCircle.style.stroke = colorTheme;
+      gaugeCircle.style.strokeDashoffset = offset;
+
+      const gBadge = document.getElementById('results-grade-badge');
+      gBadge.textContent = grade;
+      gBadge.style.backgroundColor = badgeBg;
+      gBadge.style.color = badgeText;
+      gBadge.style.border = `1px solid ${colorTheme}`;
+
+      document.getElementById('results-verdict-text').textContent = verdict;
+
+      // Stats block
+      document.getElementById('stats-correct').textContent = correct;
+      document.getElementById('stats-wrong').textContent = wrong;
+      document.getElementById('stats-skipped').textContent = skipped;
+
+      // Section Charts
+      renderSectionBarCharts();
+
+      // Accordion detailed explorer list
+      renderReviewExplorer();
+    }
+
+    function renderSectionBarCharts() {
+      const parent = document.getElementById('results-section-chart');
+      const uniqueSecs = [...new Set(ALL_QUESTIONS.map(q => q.s))];
+      
+      parent.innerHTML = uniqueSecs.map(sec => {
+        const secQs = ALL_QUESTIONS.filter(q => q.s === sec);
+        const correct = secQs.filter(q => {
+          const mainIdx = ALL_QUESTIONS.indexOf(q);
+          return answers[mainIdx] === q.a;
+        }).length;
+        
+        const accuracyPct = Math.round((correct / secQs.length) * 100);
+        
+        let barFillColor = 'var(--brand-blue)';
+        if (accuracyPct >= 70) barFillColor = 'var(--success)';
+        else if (accuracyPct < 50) barFillColor = 'var(--danger)';
+        
+        return `
+          <div class="sec-progress-item">
+            <div class="sec-progress-info">
+              <span>${sec}</span>
+              <span>${correct}/${secQs.length} (${accuracyPct}%)</span>
+            </div>
+            <div class="sec-progress-bar-bg">
+              <div class="sec-progress-bar-fill" style="width: ${accuracyPct}%; background: ${barFillColor};"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ----------------------------------
+    // ACCORDION REVIEW EXPLORER
+    // ----------------------------------
+    let activeFilter = 'all';
+
+    function renderReviewExplorer() {
+      // Calculate totals for review badge headers
+      const counts = {
+        all: ALL_QUESTIONS.length,
+        correct: ALL_QUESTIONS.filter((q, i) => answers[i] === q.a).length,
+        wrong: ALL_QUESTIONS.filter((q, i) => answers[i] !== -1 && answers[i] !== q.a).length,
+        skipped: answers.filter(a => a === -1).length,
+        bookmarked: bookmarks.filter(b => b === true).length
+      };
+
+      document.getElementById('f-all').textContent = counts.all;
+      document.getElementById('f-correct').textContent = counts.correct;
+      document.getElementById('f-wrong').textContent = counts.wrong;
+      document.getElementById('f-skipped').textContent = counts.skipped;
+      document.getElementById('f-bookmarked').textContent = counts.bookmarked;
+
+      filterReview(activeFilter);
+    }
+
+    function filterReview(type) {
+      activeFilter = type;
+      
+      // Update UI tab states
+      const tabs = document.querySelectorAll('#review-filter-tabs .filter-tab');
+      const typeIndex = ['all', 'correct', 'wrong', 'skipped', 'bookmarked'].indexOf(type);
+      tabs.forEach((t, idx) => {
+        if (idx === typeIndex) t.classList.add('active');
+        else t.classList.remove('active');
+      });
+
+      applyReviewRender();
+    }
+
+    function searchReview() {
+      applyReviewRender();
+    }
+
+    function applyReviewRender() {
+      const parent = document.getElementById('results-review-accordion-list');
+      const searchQuery = document.getElementById('review-search').value.toLowerCase();
+      
+      let html = '';
+      
+      ALL_QUESTIONS.forEach((q, i) => {
+        const userAns = answers[i];
+        const isCorrect = userAns === q.a;
+        const isSkipped = userAns === -1;
+        const isWrong = !isSkipped && !isCorrect;
+        const isBookmarked = bookmarks[i];
+
+        // Apply Status Filter
+        if (activeFilter === 'correct' && !isCorrect) return;
+        if (activeFilter === 'wrong' && !isWrong) return;
+        if (activeFilter === 'skipped' && !isSkipped) return;
+        if (activeFilter === 'bookmarked' && !isBookmarked) return;
+
+        // Apply Search query Filter
+        const textMatch = q.q.toLowerCase().includes(searchQuery) || q.concept.toLowerCase().includes(searchQuery);
+        if (searchQuery && !textMatch) return;
+
+        let statusClass = 's'; // skipped
+        let statusLabel = 'Skipped';
+        if (isCorrect) { statusClass = 'c'; statusLabel = 'Correct'; }
+        else if (isWrong) { statusClass = 'w'; statusLabel = 'Incorrect'; }
+
+        html += `
+          <div class="review-accordion">
+            <div class="review-header" onclick="toggleAccordion(this)">
+              <div class="review-header-left">
+                <span class="rev-badge ${statusClass}">${statusLabel}</span>
+                <span style="font-weight: 700;">Q${i + 1}</span>
+                <span style="color:var(--text-muted); font-size: 12px;">${q.s} · ${q.concept}</span>
+              </div>
+              <div class="review-header-right">
+                ${isBookmarked ? `<svg width="12" height="12" viewBox="0 0 24 24" fill="var(--brand-orange)" stroke="var(--brand-orange)"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>` : ''}
+                <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="review-body">
+              <p class="rev-q-text">${q.q.replace(/\n/g, '<br>')}</p>
+              ${q.code ? `<pre style="font-family:var(--font-mono); font-size:12px; background:var(--bg-app); border:1px solid var(--border); padding:10px; margin-bottom:12px; border-radius:4px; overflow-x:auto;"><code>${q.code}</code></pre>` : ''}
+              
+              <div style="margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
+                ${q.opts.map((opt, optIdx) => {
+                  let optCls = 'rev-option';
+                  if (optIdx === q.a) optCls += ' correct';
+                  else if (optIdx === userAns) optCls += ' wrong';
+                  
+                  return `
+                    <div class="${optCls}">
+                      <span style="font-weight:700;">${['A','B','C','D'][optIdx]}.</span>
+                      <span>${opt}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+              
+              <div class="explanation-card" style="margin-top: 10px;">
+                <div class="explanation-title" style="color:var(--success);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>
+                  <span>Correct Answer: Option ${['A','B','C','D'][q.a]}</span>
+                </div>
+                <p class="explanation-text">${q.exp}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      if (!html) {
+        html = `<div style="text-align:center; padding: 2rem; color:var(--text-muted); font-size: 13.5px;">No questions match the current filter and search query.</div>`;
+      }
+
+      parent.innerHTML = html;
+    }
+
+    function toggleAccordion(headerEl) {
+      const body = headerEl.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      
+      // Close all others (optional accordion behavior)
+      const allBodies = document.querySelectorAll('.review-body');
+      allBodies.forEach(b => b.classList.remove('open'));
+      
+      if (!isOpen) {
+        body.classList.add('open');
+      }
+    }
+
+    // ----------------------------------
+    // RESET & RETAKE ROUTINES
+    // ----------------------------------
+    function confirmReset() {
+      if (confirm('Are you sure you want to discard your progress and retake the test?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+    }
+
+    // ----------------------------------
+    // THEME MODULE (LIGHT/DARK)
+    // ----------------------------------
+    function toggleTheme() {
+      const activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('highradius_theme', newTheme);
+      updateThemeIcon();
+    }
+
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('highradius_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon();
+    }
+
+    function updateThemeIcon() {
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const sun = document.getElementById('theme-sun');
+      const moon = document.getElementById('theme-moon');
+      if (theme === 'dark') {
+        sun.style.display = 'block';
+        moon.style.display = 'none';
+      } else {
+        sun.style.display = 'none';
+        moon.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
