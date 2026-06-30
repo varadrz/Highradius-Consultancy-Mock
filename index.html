@@ -60,6 +60,14 @@
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
       --glow-accent: 0 0 20px rgba(14, 165, 233, 0.2);
+      
+      --navbar-height: 72px;
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --navbar-height: 56px;
+      }
     }
 
     [data-theme="light"] {
@@ -163,12 +171,15 @@
     .navbar {
       background: var(--bg-surface);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
+      height: var(--navbar-height);
+      padding: 0 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
     }
     
     .nav-container {
@@ -177,6 +188,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 0 1rem;
+      }
     }
 
     .logo {
@@ -401,6 +419,8 @@
     @media (max-width: 900px) {
       .quiz-layout {
         grid-template-columns: 1fr;
+        gap: 16px;
+        padding-top: 10px;
       }
     }
 
@@ -411,6 +431,28 @@
       gap: 16px;
       position: sticky;
       top: 90px;
+    }
+
+    @media (max-width: 900px) {
+      .quiz-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 320px;
+        height: 100vh;
+        background: var(--bg-surface);
+        border-left: 1px solid var(--border);
+        z-index: 1100;
+        padding: 1.5rem;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        display: flex;
+      }
+      .quiz-sidebar.open {
+        transform: translateX(0);
+      }
     }
 
     .sidebar-card {
@@ -1186,6 +1228,163 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
     }
+
+    /* ----------------------------------
+       MOBILE-ONLY COMPONENT STYLES
+       ---------------------------------- */
+    .mobile-status-bar {
+      display: none;
+    }
+    #sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1050;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    #sidebar-overlay.open {
+      opacity: 1;
+    }
+    .mobile-sidebar-header {
+      display: none;
+    }
+    
+    @media (max-width: 900px) {
+      .mobile-status-bar {
+        display: flex;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 1rem;
+        position: sticky;
+        top: var(--navbar-height);
+        z-index: 90;
+        align-items: center;
+        justify-content: space-between;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        margin: -2rem -1.5rem 1rem -1.5rem;
+        width: calc(100% + 3rem);
+      }
+      .mobile-sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+      }
+      .msb-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .msb-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      #msb-q-index {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-muted);
+      }
+      .msb-timer-val {
+        font-size: 16px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        color: var(--text-primary);
+      }
+      .msb-timer-val.warn {
+        color: var(--warning);
+      }
+      .msb-timer-val.danger {
+        color: var(--danger);
+      }
+      .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .filter-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .filter-tab {
+        flex-shrink: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 1.5rem 1rem;
+      }
+      .hero-card {
+        padding: 2rem 1rem;
+      }
+      .question-card {
+        padding: 1.25rem;
+      }
+      .option-btn {
+        padding: 10px 12px;
+        font-size: 13.5px;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .stat-card {
+        padding: 1rem;
+      }
+      .stat-card .val {
+        font-size: 16px;
+      }
+      .instructions-card {
+        padding: 1.25rem;
+      }
+      .instructions-card li {
+        font-size: 13px;
+      }
+      .q-body-text {
+        font-size: 14.5px;
+        margin-bottom: 1.25rem;
+      }
+      .control-bar {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .control-bar .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .results-grid {
+        gap: 16px;
+      }
+      .stats-breakdown-row {
+        gap: 8px;
+      }
+      .stat-bar-card {
+        padding: 8px;
+      }
+      .stat-bar-card .val {
+        font-size: 16px;
+      }
+      #results-screen > h2 {
+        margin-top: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1285,8 +1484,33 @@
     <!-- 2. QUIZ WORKSPACE -->
     <section id="quiz-screen" class="quiz-layout animate-fade-in" style="display:none;">
       
+      <!-- Sidebar overlay for mobile drawer -->
+      <div id="sidebar-overlay" onclick="toggleMobileSidebar(false)"></div>
+      
+      <!-- Mobile Status Bar -->
+      <div class="mobile-status-bar" id="mobile-status-bar">
+        <div class="msb-left">
+          <span id="msb-sec-badge" class="sec-badge sql">SQL</span>
+          <span id="msb-q-index">Q1 of 140</span>
+        </div>
+        <div class="msb-right">
+          <span class="msb-timer-val" id="msb-timer">120:00</span>
+          <button class="btn primary btn-sm" onclick="toggleMobileSidebar(true)" style="padding: 6px 12px; font-size: 12px; border-radius: 8px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 4px; vertical-align: middle;"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            <span>Navigator</span>
+          </button>
+        </div>
+      </div>
+      
       <!-- Sidebar Control Center -->
       <aside class="quiz-sidebar">
+        <!-- Mobile Sidebar Header -->
+        <div class="mobile-sidebar-header">
+          <span style="font-weight: 800; font-size: 16px;">Test Navigator</span>
+          <button class="btn-icon" onclick="toggleMobileSidebar(false)" style="width: 32px; height: 32px; border-radius: 8px;" aria-label="Close Navigator">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+          </button>
+        </div>
         <!-- Timer & Overall Progress -->
         <div class="sidebar-card">
           <div class="timer-display">
@@ -1722,9 +1946,11 @@
       const m = Math.floor(remaining / 60);
       const s = remaining % 60;
       const el = document.getElementById('timer');
+      const msbEl = document.getElementById('msb-timer');
+      const timeStr = `${m}:${s < 10 ? '0' : ''}${s}`;
       
       if (el) {
-        el.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        el.textContent = timeStr;
         
         // Critical alerts coloring
         if (remaining < 600) { // 10 minutes
@@ -1733,6 +1959,17 @@
           el.className = 'timer-val warn';
         } else {
           el.className = 'timer-val';
+        }
+      }
+
+      if (msbEl) {
+        msbEl.textContent = timeStr;
+        if (remaining < 600) {
+          msbEl.className = 'msb-timer-val danger';
+        } else if (remaining < 1800) {
+          msbEl.className = 'msb-timer-val warn';
+        } else {
+          msbEl.className = 'msb-timer-val';
         }
       }
 
@@ -1814,6 +2051,11 @@
       renderSectionsShortcuts();
       renderNavGrid();
       saveState();
+
+      // Auto close mobile drawer when jumping
+      if (window.innerWidth <= 900) {
+        toggleMobileSidebar(false);
+      }
     }
 
     function renderQ() {
@@ -1824,6 +2066,23 @@
       // Progress stats in sidebar card
       document.getElementById('prog').style.width = pct + '%';
       document.getElementById('progress-text').textContent = `${answers.filter(a => a !== -1).length}/${ALL_QUESTIONS.length} (${pct}%)`;
+
+      // Update mobile status bar info
+      const msbSecBadge = document.getElementById('msb-sec-badge');
+      const msbQIndex = document.getElementById('msb-q-index');
+      if (msbSecBadge) {
+        let secClass = 'sql';
+        if (q.s === 'Quant') secClass = 'quant';
+        else if (q.s === 'Verbal') secClass = 'verbal';
+        else if (q.s === 'Reading Comp') secClass = 'reading-comp';
+        else if (q.s === 'Pattern') secClass = 'pattern';
+        
+        msbSecBadge.textContent = q.s;
+        msbSecBadge.className = `sec-badge ${secClass}`;
+      }
+      if (msbQIndex) {
+        msbQIndex.textContent = `Q ${current + 1}/${ALL_QUESTIONS.length}`;
+      }
 
       // Disable/Enable Nav buttons
       document.getElementById('prevBtn').disabled = current === 0;
@@ -2279,6 +2538,26 @@
       } else {
         sun.style.display = 'none';
         moon.style.display = 'block';
+      }
+    }
+
+    function toggleMobileSidebar(open) {
+      const sidebar = document.querySelector('.quiz-sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      if (open) {
+        sidebar.classList.add('open');
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          overlay.classList.add('open');
+        }, 10);
+      } else {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+        setTimeout(() => {
+          if (!sidebar.classList.contains('open')) {
+            overlay.style.display = 'none';
+          }
+        }, 300);
       }
     }
   </script>
